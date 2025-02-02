@@ -3,27 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Canhoto</title>
+    <title>Sistema de Controle de Canhotos</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Editar Canhoto</h1>
+    <h1>Sistema de Controle de Canhotos</h1>
 
-    <form action="{{ url_for('editar', index=index) }}" method="POST">
+    <!-- Formulário para adicionar canhotos -->
+    <form id="form-canhoto">
         <label for="data">Data:</label>
-        <input type="date" id="data" name="data" value="{{ canhoto.data }}" required>
+        <input type="date" id="data" name="data" required>
         <br>
         <label for="quantidade">Quantidade:</label>
-        <input type="number" id="quantidade" name="quantidade" value="{{ canhoto.quantidade }}" required>
+        <input type="number" id="quantidade" name="quantidade" required>
         <br>
-        <button type="submit">Salvar alterações</button>
+        <button type="submit">Adicionar</button>
     </form>
 
-    <a href="{{ url_for('index') }}">Voltar</a>
-    
+    <!-- Lista de Canhotos -->
+    <h2>Canhotos Adicionados:</h2>
+    <ul id="lista-canhotos">
+        <!-- Aqui a lista será gerada dinamicamente via JavaScript -->
+    </ul>
 
+    <!-- Formulário para calcular o total -->
+    <form id="form-calcular-total">
+        <button type="submit">Calcular Total</button>
+    </form>
+
+    <h3 id="total-canhotos"></h3>
+
+    <script>
+        // Array para armazenar os canhotos
+        let canhotos = [];
+
+        // Função para atualizar a lista de canhotos na página
+        function atualizarLista() {
+            const lista = document.getElementById('lista-canhotos');
+            lista.innerHTML = '';  // Limpa a lista
+
+            canhotos.forEach((canhoto, index) => {
+                const li = document.createElement('li');
+                li.classList.add('card');
+                li.innerHTML = `
+                    <div class="card-header">Data: ${canhoto.data}</div>
+                    <div class="card-content">Quantidade: ${canhoto.quantidade}</div>
+                    <a href="#" onclick="excluirCanhoto(${index})" class="delete-btn">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                    <a href="#" onclick="editarCanhoto(${index})">Editar</a>
+                `;
+                lista.appendChild(li);
+            });
+        }
+
+        // Função para adicionar um novo canhoto
+        document.getElementById('form-canhoto').addEventListener('submit', function(event) {
+            event.preventDefault();  // Impede o envio tradicional do formulário
+
+            const data = document.getElementById('data').value;
+            const quantidade = parseInt(document.getElementById('quantidade').value, 10);
+
+            // Adiciona o novo canhoto à lista
+            canhotos.push({ data, quantidade });
+
+            // Atualiza a lista na página
+            atualizarLista();
+
+            // Limpa os campos do formulário
+            document.getElementById('form-canhoto').reset();
+        });
+
+        // Função para excluir um canhoto
+        function excluirCanhoto(index) {
+            canhotos.splice(index, 1);  // Remove o canhoto pelo índice
+            atualizarLista();  // Atualiza a lista
+        }
+
+        // Função para editar um canhoto
+        function editarCanhoto(index) {
+            const canhoto = canhotos[index];
+            document.getElementById('data').value = canhoto.data;
+            document.getElementById('quantidade').value = canhoto.quantidade;
+
+            // Remove o canhoto para evitar duplicação
+            excluirCanhoto(index);
+        }
+
+        // Função para calcular o total de canhotos
+        document.getElementById('form-calcular-total').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const total = canhotos.reduce((sum, canhoto) => sum + canhoto.quantidade, 0);
+            document.getElementById('total-canhotos').textContent = `Total de Canhotos: ${total}`;
+        });
+    </script>
 </body>
 </html>
-
-
-
