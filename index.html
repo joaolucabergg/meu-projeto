@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Controle de Canhotos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/adimaxlogo.ico">
+</head>
+<body>
+    <h1>Sistema de Controle de Canhotos</h1>
+
+    <!-- Formulário para adicionar canhotos -->
+    <form action="/" method="POST">
+        <label for="data">Data:</label>
+        <input type="date" id="data" name="data" value="{{ data_default }}" required>
+        <br>
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" id="quantidade" name="quantidade" required>
+        <br>
+        <button type="submit">Adicionar</button>
+    </form>
+
+    <!-- Quadro para exibir os canhotos -->
+    <div class="canhotos-container">
+        <h2>Canhotos Adicionados:</h2>
+        <div class="canhotos-grid">
+            {% for canhoto in canhotos %}
+                <div class="card">
+                    <div class="card-header">Data: {{ canhoto.data }}</div>
+                    <div class="card-content">Quantidade: {{ canhoto.quantidade }}</div>
+                    <!-- Link para excluir com ícone de lixeira -->
+                    <a href="{{ url_for('excluir', index=loop.index0) }}" class="delete-btn">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                    <!-- Link para editar com ícone de lápis -->
+                    <a href="{{ url_for('editar', index=loop.index0) }}" class="edit-btn">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Formulário para calcular o total -->
+    <form action="/calcular_total" method="POST">
+        <button type="submit">Calcular Total</button>
+    </form>
+
+    {% if total is not none %}
+        <h3>Total de Canhotos: {{ total }}</h3>
+    {% endif %}
+
+    <script src="script.js"></script>
+
+    <link rel="stylesheet" href="css/estilo.css">
+
+    
+</body>
+</html>

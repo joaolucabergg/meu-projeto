@@ -1,0 +1,286 @@
+/* Resetando algumas configurações padrões */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Configuração da fonte geral */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom right, #2980b9, #672d80); /* Fundo degradê azul */
+    background-attachment: fixed; /* Fundo fixo ao rolar */
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo */
+    align-items: center;
+    height: 100vh; /* Ocupa a altura toda da tela */
+    flex-direction: column;
+    overflow: auto; /* Permite rolar a página */
+    position: relative;
+}
+
+/* Centralizando o conteúdo e definindo o container */
+h1 {
+    text-align: center;
+    color: #ecf0f1;
+    font-size: 2.5em; /* Tamanho maior do título */
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Adiciona sombra ao texto */
+    border-bottom: 5px solid #1abc9c; /* Linha abaixo do título */
+    padding-bottom: 10px;
+    transition: font-size 0.3s ease; /* Efeito de transição no tamanho */
+}
+
+h1:hover {
+    font-size: 3em; /* Aumenta o tamanho ao passar o mouse */
+}
+
+/* Estilizando o formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 100%; /* Garante que o formulário ocupe 100% da largura disponível */
+    max-width: 500px; /* Limita a largura máxima */
+    margin-top: 20px; /* Espaço superior */
+}
+
+/* Estilizando os campos de input */
+label {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    color: #ecf0f1;
+}
+
+input[type="date"],
+input[type="number"] {
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%; /* Campos ocupando toda a largura do formulário */
+    max-width: 250px; /* Limita o tamanho máximo */
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+}
+
+/* Estilo do botão */
+button {
+    padding: 10px 20px;
+    background-color: #1abc9c;
+    color: #fff;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%; /* Botão ocupando toda a largura disponível */
+    max-width: 250px; /* Limita o tamanho máximo do botão */
+}
+
+button:hover {
+    background-color: #16a085;
+    transform: scale(1.05); /* Efeito de crescimento ao passar o mouse */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra mais forte ao passar o mouse */
+}
+
+button:active {
+    background-color: #149b82; /* Cor mais escura ao pressionar */
+    transform: scale(0.98); /* Diminui o tamanho quando pressionado */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Sombra mais suave quando pressionado */
+}
+
+/* Estilo para o contêiner de canhotos */
+.canhotos-container {
+    width: 100%; /* Ocupa toda a largura */
+    max-width: 1000px; /* Largura máxima */
+    margin: 20px auto; /* Espaço ao redor */
+    text-align: center;
+}
+
+/* Estilo para o grid de canhotos */
+.canhotos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsividade */
+    gap: 20px; /* Espaço entre os itens */
+    justify-items: center;
+}
+
+/* Estilo do cartão do canhoto */
+.card {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
+}
+
+/* Estilo do botão de exclusão */
+.delete-btn {
+    text-decoration: none;
+    color: #ecf0f1;
+    margin-top: 10px;
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+}
+
+.delete-btn:hover {
+    color: #e74c3c; /* Cor vermelha ao passar o mouse */
+}
+
+/* Responsividade para dispositivos menores */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2.5em;
+    }
+    form {
+        width: 90%; /* Ajusta para ocupar 90% da largura em telas pequenas */
+        padding: 15px;
+    }
+    input[type="date"], input[type="number"], button {
+        width: 100%; /* Campos e botões ocupando toda a largura */
+        margin: 5px 0;
+    }
+}
+
+/* Adicionando um foco para acessibilidade */
+button:focus {
+    outline: none; /* Remove o contorno padrão ao focar */
+    box-shadow: 0 0 10px rgba(26, 188, 156, 0.8); /* Sombra brilhante para destacar quando o botão estiver focado */
+}
+
+/* Estilizando o link "Voltar" */
+a {
+    color: #083b37; /* Cor verde */
+    text-decoration: none; /* Remove o sublinhado */
+    font-size: 1.2em;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #1abc9c; /* Cor do link ao passar o mouse */
+}
+
+/* Estilo do botão */
+button {
+    padding: 10px 20px;
+    background-color: #1abc9c; /* Cor inicial */
+    color: #fff;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease; /* Transição suave */
+    width: 100%; /* Botão ocupando toda a largura disponível */
+    max-width: 250px; /* Limita o tamanho máximo do botão */
+}
+
+/* Efeito de hover - ao passar o mouse no botão */
+button:hover {
+    background-color: #193a50; /* Muda para um azul mais forte */
+    transform: scale(1.05); /* Efeito de crescimento ao passar o mouse */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra mais forte ao passar o mouse */
+}
+
+/* Efeito quando o botão é clicado */
+button:active {
+    background-color: #149b82; /* Cor mais escura ao pressionar */
+    transform: scale(0.98); /* Diminui o tamanho quando pressionado */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Sombra mais suave quando pressionado */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Mantém a transição após o clique */
+}
+
+/* Manter a cor ativa por mais tempo após o clique */
+button:focus {
+    outline: none; /* Remove o contorno padrão ao focar */
+    box-shadow: 0 0 10px rgba(26, 188, 156, 0.8); /* Sombra brilhante para destacar quando o botão estiver focado */
+    background-color: #149b82; /* Mantém a cor ativa após o clique */
+}
+
+/* Contêiner geral para os cards */
+.cards-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    padding: 20px;
+}
+
+/* Estilo do card */
+.card {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    width: 250px; /* Tamanho fixo */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Efeito ao passar o mouse sobre o card */
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* Cabeçalho do card */
+.card-header {
+    font-size: 1.2em;
+    color: #1abc9c;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 10px;
+}
+
+/* Conteúdo do card */
+.card-content {
+    font-size: 1em;
+    color: #ecf0f1;
+    margin-bottom: 15px;
+}
+
+/* Rodapé do card */
+.card-footer {
+    text-align: center;
+}
+
+/* Botão de excluir */
+.delete-btn {
+    text-decoration: none;
+    color: #ecf0f1;
+    margin-top: 10px;
+    font-size: 1.2em;
+    transition: color 0.3s ease;
+}
+
+.delete-btn:hover {
+    color: #e74c3c;
+}
+
+/* Link de voltar */
+a {
+    color: #1abc9c;
+    text-decoration: none;
+    font-size: 1.2em;
+    margin-top: 20px;
+    display: inline-block;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #083b37;
+}
